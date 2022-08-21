@@ -22,8 +22,8 @@
   <div>
         <img src="./assets/room1.jpg" class="room-in">
 
-    <h2 @click="모달창열렸니 = true" :style="styleColor">{{products[0]}}</h2>
-    <h4>{{price1}} 만원</h4>
+    <h2 @click="모달창열렸니 = true" :style="styleColor">{{oneroom[0].title}}</h2>
+    <h4>{{oneroom[0].price}} 만원</h4>
     <p>가격 정보</p>
     <button v-on:click="신고수[0]++">허위매물신고</button> <span>신고 수 : {{신고수[0]}}</span>
     <!--이벤트 핸들러 생성  :: 실시간 렌더링이 되기 때문에 따로 자바스크립트를 선언하지 않고 변수에 값을 넣어도 자동 렌더링이 되기 때문에 
@@ -31,10 +31,10 @@
 
   </div>
   <div>
-            <img src="./assets/room0.jpg" class="room-in">
+            <img :src="oneroom[1].image" class="room-in">
 
-    <h2>{{products[1]}}</h2>
-    <h4>{{price2}} 만원</h4>
+    <h2>{{oneroom[1].title}}</h2>
+    <h4>{{oneroom[1].price}} 만원</h4>
     <p>가격 정보</p>
     <button v-on:mouseover="increase">허위매물신고</button> <span>신고 수 : {{신고수[1]}}</span>
     <!--mouseover 를 사용할 수도 있다.-->
@@ -62,12 +62,7 @@
 </template>
 
 <script>  
-function test() {
-    console.log('test1')
-  console.log('test2')
-  console.log('test3')
-}
-test()
+import roomdata from './assets/data.js';
 export default {
   name: 'App',
   data() {
@@ -84,6 +79,7 @@ export default {
         styleColor  : "color : red;",
         backColor : "background-color : green",
         신고수 : [0,0,0],
+        oneroom : roomdata,
       }
   },
   methods : {
@@ -107,7 +103,7 @@ div {
 }
 .black-bg {
   width: 100%; height: 100%;
-  background-color: rgba(0, 0, 0, 0 , 5);
+  background-color: rgba(0, 0, 0, 0 ,5);
   position: fixed; padding: 20px;
 }
 .white-bg {
